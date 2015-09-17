@@ -8,7 +8,7 @@ const {
 } = Em
 
 export default Ember.Component.extend({
-  classNames: ['ember-notify-cn'],
+  classNames: ['en-notify'],
 
   notify: inject.service(),
   messages: null,

@@ -10,7 +10,7 @@ const {
 
 export default Ember.Component.extend({
   classNames: ['en-notify-message'],
-  classNameBindings: ['message.visible:ember-notify-show:ember-notify-hide'],
+  classNameBindings: ['message.type', 'message.visible:en-notify-show:en-notify-hide'],
 
   message: null,
   closeAfter: null,

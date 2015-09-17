@@ -1,6 +1,8 @@
-<div class="en-notify-header">
-  {{message.header}}
-</div>
+{{#if message.header}}
+  <div class="en-notify-header">
+    {{message.header}}
+  </div>
+{{/if}}
 
 <div class="en-notify-text">
   {{message.text}}

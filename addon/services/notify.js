@@ -6,10 +6,19 @@ const {
   set: set
 } = Em
 
+let aliasToShow = (type) => {
+  return (message, options) => {
+    return this.show(type, message, options)
+  }
+}
+
 export default Ember.Service.extend({
   init () {
     this.pending = []
   },
+
+  success: aliasToShow('success'),
+  error: aliasToShow('error'),
 
   show (type, options) {
     let message = Message.create({
