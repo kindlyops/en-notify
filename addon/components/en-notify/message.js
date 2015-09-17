@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   classNameBindings: ['message.type', 'message.visible:en-notify-show:en-notify-hide'],
 
   message: null,
-  closeAfter: null,
+  closeAfter: 2500,
 
   init () {
     this._super(...arguments)

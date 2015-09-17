@@ -12,7 +12,6 @@ export default Ember.Component.extend({
 
   notify: inject.service(),
   messages: null,
-  closeAfter: 2500,
 
   init () {
     this._super(...arguments)
