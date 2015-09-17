@@ -17,10 +17,7 @@ export default Ember.Component.extend({
 
   init () {
     this._super(...arguments)
-
-    run.later(this, () => {
-      set(this, 'message.visible', true)
-    }, 50)
+    set(this, 'message.visible', true)
   },
   
   didInsertElement () {
