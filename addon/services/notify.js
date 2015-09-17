@@ -6,8 +6,8 @@ const {
   set: set
 } = Em
 
-let aliasToShow = (type) => {
-  return (message, options) => {
+function aliasToShow (type) {
+  return function (message, options) {
     return this.show(type, message, options)
   }
 }
