@@ -1,6 +1,10 @@
 {{#if message.header}}
   <div class="en-notify-header">
     {{message.header}}
+
+    <div {{action "close"}} class="en-notify-close">
+      &times;
+    </div>
   </div>
 {{/if}}
 
