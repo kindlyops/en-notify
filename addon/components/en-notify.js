@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   },
 
   show (message) {
-    if (get(this, 'isDestroyed')) return 
+    if (get(this, 'isDestroyed')) return
 
     get(this, 'messages').pushObject(message)
     return message

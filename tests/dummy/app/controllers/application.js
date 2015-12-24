@@ -6,7 +6,7 @@ export default Em.Controller.extend({
   init () {
     this.get('notify').show("error", {
       header: "Something went wrong",
-      text: "yippi",
+      errors: ['Hello there', 'Hi there'],
       closeAfter: null
     })
   }

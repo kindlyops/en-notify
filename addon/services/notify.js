@@ -25,6 +25,7 @@ export default Ember.Service.extend({
       type: type,
       header: options.header,
       text: options.text,
+      errors: options.errors,
       closeAfter: options.closeAfter
     })
 

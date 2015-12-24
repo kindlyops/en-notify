@@ -9,5 +9,15 @@
 {{/if}}
 
 <div class="en-notify-text">
-  {{message.text}}
+  {{#if message.text}}
+    {{message.text}}
+  {{else if message.errors}}
+    <ul>
+      {{#each message.errors as |error|}}
+        <li>
+          {{error}}
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
 </div>
