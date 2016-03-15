@@ -4,10 +4,10 @@ export default Em.Controller.extend({
   notify: Em.inject.service(),
 
   init () {
-    this.get('notify').show("error", {
+    this.get('notify').success({
       header: "Something went wrong",
-      errors: ['Hello there', 'Hi there'],
-      closeAfter: null
+      text: 'Hello',
+      closeAfter: 150000
     })
   }
 })

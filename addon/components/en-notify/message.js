@@ -15,6 +15,8 @@ export default Ember.Component.extend({
   message: null,
   closeAfter: 2500,
 
+  isSuccess: computed.equal('message.type', 'success'),
+
   init () {
     this._super(...arguments)
     set(this, 'message.visible', true)
