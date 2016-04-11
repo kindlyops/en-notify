@@ -23,6 +23,7 @@ export default Ember.Service.extend({
   show (type, options) {
     let message = Message.create({
       type: type,
+      uid: options.uid,
       header: options.header,
       text: options.text,
       errors: options.errors,
@@ -38,6 +39,21 @@ export default Ember.Service.extend({
     }
 
     return message
+  },
+
+  remove (uid) {
+    let target = get(this, 'target')
+    let message, messages, filtered
+
+    if (target) {
+      messages = target.get('messages')
+      message = messages.filter(message => get(message, 'uid') === uid)
+      messages.removeObjects(message)
+    } else {
+      messages = this.pending
+      filtered = messages.reject(message => get(message, 'uid') === uid)
+      this.pending = filtered
+    }
   },
 
   setTarget (target) {
