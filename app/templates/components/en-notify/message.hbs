@@ -12,10 +12,12 @@
   </div>
 {{/if}}
 
-<div class="en-notify-text">
-  {{#if message.text}}
+{{#if message.text}}
+  <div class="en-notify-text">
     {{message.text}}
-  {{else if message.errors}}
+  </div>
+{{else if message.errors}}
+  <div class="en-notify-text">
     <ul>
       {{#each message.errors as |error|}}
         <li>
@@ -23,5 +25,5 @@
         </li>
       {{/each}}
     </ul>
-  {{/if}}
-</div>
+  </div>
+{{/if}}
