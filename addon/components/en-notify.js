@@ -1,32 +1,27 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
-const {
-  get: get,
-  set: set,
-  computed,
-  inject,
-} = Em
+const { A, get, set, computed, Component, inject } = Ember
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['en-notify'],
 
   notify: inject.service(),
   messages: null,
 
-  init () {
+  init() {
     this._super(...arguments)
-    this.set('messages', Em.A())
-    this.get('notify').setTarget(this)
+    set(this, 'messages', A())
+    get(this, 'notify').setTarget(this)
   },
 
-  willDestroyElement () {
-    this.get('notify').setTarget(null)
+  willDestroyElement() {
+    get(this, 'notify').setTarget(null)
   },
 
-  show (message) {
+  show(message) {
     if (get(this, 'isDestroyed')) return
 
     get(this, 'messages').pushObject(message)
     return message
-  }
-});
+  },
+})

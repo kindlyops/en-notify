@@ -1,28 +1,25 @@
-import Em from 'ember'
+import Ember from 'ember'
 import Message from 'en-notify/utils/message'
 
-const {
-  get: get,
-  set: set
-} = Em
+const { get, set, Service } = Ember
 
-function aliasToShow (type) {
-  return function (message, options) {
+function aliasToShow(type) {
+  return function(message, options) {
     return this.show(type, message, options)
   }
 }
 
-export default Ember.Service.extend({
-  init () {
+export default Service.extend({
+  init() {
     this.pending = []
   },
 
   success: aliasToShow('success'),
   error: aliasToShow('error'),
 
-  show (type, options) {
+  show(type, options) {
     let message = Message.create({
-      type: type,
+      type,
       uid: options.uid,
       header: options.header,
       text: options.text,
@@ -41,7 +38,7 @@ export default Ember.Service.extend({
     return message
   },
 
-  remove (uid) {
+  remove(uid) {
     let target = get(this, 'target')
     let message, messages, filtered
 
@@ -51,17 +48,17 @@ export default Ember.Service.extend({
       messages.removeObjects(message)
     } else {
       messages = this.pending
-      filtered = messages.reject(message => get(message, 'uid') === uid)
+      filtered = messages.filter(message => get(message, 'uid') !== uid)
       this.pending = filtered
     }
   },
 
-  setTarget (target) {
+  setTarget(target) {
     set(this, 'target', target)
-    
+
     if (target) {
       this.pending.forEach(message => target.show(message))
       this.pending = []
     }
-  }
-});
+  },
+})

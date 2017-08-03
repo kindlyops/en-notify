@@ -1,22 +1,19 @@
-import Em from 'ember'
+import Ember from 'ember'
 
-export default Em.Controller.extend({
-  notify: Em.inject.service(),
+const { get, set, run, Controller, inject: { service }} = Ember
+
+export default Controller.extend({
+  notify: service(),
 
   init () {
-    let e = this.get('notify').success({
+    let notify = get(this, 'notify').success({
       uid: '123',
       header: "Something went wrong",
-      text: 'Hello',
-      closeAfter: 150000
+      text: 'Hello'
     })
 
-    Em.run.later(() => {
-      e.set('text', 'ok')
-    }, 1500)
-
-    Em.run.later(() => {
-      this.get('notify').remove('123')
+    run.later(() => {
+      set(notify, 'text', 'ok')
     }, 1500)
   }
 })

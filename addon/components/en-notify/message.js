@@ -1,56 +1,68 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
-const {
-  get: get,
-  set: set,
-  computed,
-  getWithDefault,
-  run
-} = Em
+const { get, set, computed, Component, getWithDefault, run, testing } = Ember
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['en-notify-message'],
-  classNameBindings: ['message.type', 'message.visible:en-notify-show:en-notify-hide'],
+  classNameBindings: [
+    'message.type',
+    'message.visible:en-notify-show:en-notify-hide',
+  ],
 
   message: null,
   closeAfter: 2500,
 
   isSuccess: computed.equal('message.type', 'success'),
 
-  init () {
+  init() {
     this._super(...arguments)
     set(this, 'message.visible', true)
   },
-  
-  didInsertElement () {
-    let closeAfter = getWithDefault(this, 'message.closeAfter', get(this, 'closeAfter'))
+
+  didInsertElement() {
+    let closeAfter = getWithDefault(
+      this,
+      'message.closeAfter',
+      get(this, 'closeAfter'),
+    )
+
+    if (testing) {
+      closeAfter = false
+    }
 
     if (closeAfter) {
-      run.later(this, () => {
-        if (get(this, 'isDestroyed')) return
-        this.send('close')
-
-      }, closeAfter)
+      run.later(
+        this,
+        () => {
+          if (get(this, 'isDestroyed')) return
+          this.send('close')
+        },
+        closeAfter,
+      )
     }
   },
 
   actions: {
-    close () {
+    close() {
       if (get(this, 'message.closed')) return
 
       get(this, 'message').setProperties({
         closed: true,
-        visible: false
+        visible: false,
       })
 
-      run.later(this, () => {
-        let parent = get(this, 'parentView')
-        if (get(this, 'isDestroyed') || ! parent || !get(parent, 'messages')) return
+      run.later(
+        this,
+        () => {
+          let parent = get(this, 'parentView')
+          if (get(this, 'isDestroyed') || !parent || !get(parent, 'messages'))
+            return
 
-        get(parent, 'messages').removeObject(get(this, 'message'))
-        set(this, 'message.visible', null)
-
-      }, 250)
-    }
-  }
-});
+          get(parent, 'messages').removeObject(get(this, 'message'))
+          set(this, 'message.visible', null)
+        },
+        250,
+      )
+    },
+  },
+})

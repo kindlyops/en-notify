@@ -1,11 +1,13 @@
-import Em from 'ember'
+import Ember from 'ember'
 
-export default Em.Object.extend({
+const { A } = Ember
+
+export default Ember.Object.extend({
   uid: null,
   header: null,
   text: null,
-  errors: Em.A([]),
+  errors: A([]),
   type: 'info',
   closeAfter: undefined,
-  visible: undefined
+  visible: undefined,
 })
