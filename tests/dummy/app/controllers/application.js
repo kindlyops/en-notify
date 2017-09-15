@@ -6,7 +6,7 @@ export default Controller.extend({
   notify: service(),
 
   init () {
-    let notify = get(this, 'notify').success({
+    let notify = get(this, 'notify').error({
       uid: '123',
       header: "Something went wrong",
       text: 'Hello'

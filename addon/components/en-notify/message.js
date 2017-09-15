@@ -13,6 +13,7 @@ export default Component.extend({
   closeAfter: 2500,
 
   isSuccess: computed.equal('message.type', 'success'),
+  isError: computed.equal('message.type', 'error'),
 
   init() {
     this._super(...arguments)
