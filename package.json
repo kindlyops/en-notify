@@ -1,7 +1,7 @@
 {
   "name": "en-notify",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "A simple notification addon for ember.js apps. WIP.",
   "keywords": [
     "ember-addon"
   ],
